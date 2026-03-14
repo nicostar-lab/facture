@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Input } from "./components/input";
+import { BrowserRouter } from "react-router";
 
 function App() {
   const [ch1, setch1] = useState(0);
@@ -13,6 +14,13 @@ function App() {
   const [totalconsomation, setTotalconsomation] = useState(0);
   const [isclicked, setIsclicked] = useState(false);
   const [isdone, setIsDone] = useState(false);
+
+
+  const date = new Date();
+  const currentMonth = date.toLocaleString("default", { month: "long" });
+ 
+  
+  
 
   useEffect(() => {
     const storedConso = localStorage.getItem("consomations");
@@ -93,7 +101,8 @@ function App() {
     }
   };
   return (
-    <div className=" flex items-center justify-center p-16 flex-col gap-6">
+    <BrowserRouter>
+     <div className=" flex items-center justify-center p-16 flex-col gap-6">
       <div className="grid grid-cols-2 gap-4 bg-base-300 rounded-lg shadow-lg p-10">
         <Input
           value={ch1 === 0 ? "" : ch1}
@@ -142,7 +151,7 @@ function App() {
 
       {consomations.length > 0 && isdone && (
         <div className="w-full flex justify-center items-center flex-col">
-          <h2 className="text-2xl font-bold mb-4">Historique Consommation</h2>
+          <h2 className="text-2xl font-bold mb-4">Facture du mois de {currentMonth}</h2>
           <div className=" flex justify-center items-center bg-base-300 rounded-lg shadow-lg w-40 py-2 text-2xl text-red-500 font-bold">
             <p>PU : {prixUnitaire.toFixed(2)}</p>
           </div>
@@ -186,6 +195,8 @@ function App() {
         </div>
       )}
     </div>
+    </BrowserRouter>
+   
   );
 }
 
