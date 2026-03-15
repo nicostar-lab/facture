@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { Input } from "./components/input";
 import { BrowserRouter } from "react-router";
@@ -17,9 +18,9 @@ function App() {
 
 
   const date = new Date();
-  const currentMonth = date.toLocaleString("default", { month: "long" });
+  date.setMonth(date.getMonth() - 2);
+  const Month = date.toLocaleString("default", { month: "long" });
  
-  
   
 
   useEffect(() => {
@@ -151,7 +152,7 @@ function App() {
 
       {consomations.length > 0 && isdone && (
         <div className="w-full flex justify-center items-center flex-col">
-          <h2 className="text-2xl font-bold mb-4">Facture du mois de {currentMonth}</h2>
+          <h2 className="text-2xl font-bold mb-4">Facture du mois de {Month}</h2>
           <div className=" flex justify-center items-center bg-base-300 rounded-lg shadow-lg w-40 py-2 text-2xl text-red-500 font-bold">
             <p>PU : {prixUnitaire.toFixed(2)}</p>
           </div>
